@@ -1,17 +1,41 @@
 <h1>Lista de Livros</h1>
+
 <form method="POST">
     <label>Título: <input type="text" name="titulo" required></label><br>
     <label>Autor: <input type="text" name="autor" required></label><br>
     <label>ISSN: <input type="text" name="issn" required></label><br>
-    <label>Data: <input type="date" name="data_publicacao" required></label><br>
+    <label>Data de Publicação: <input type="date" name="data_publicacao" required></label><br>
     <label>Páginas: <input type="number" name="paginas" required></label><br>
-    <button type="submit">Criar</button>
+    <button type="submit">Criar Livro</button>
 </form>
+
 <hr>
-<ul>
-    {% for livro in livros %}
-        <li>{{ livro.titulo }} – {{ livro.autor }} ({{ livro.paginas }} páginas)</li>
-    {% else %}
-        <li>Nenhum livro cadastrado.</li>
-    {% endfor %}
-</ul>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>ISSN</th>
+            <th>Publicado</th>
+            <th>Páginas</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in livros %}
+        <tr>
+            <td>{{ livro.id }}</td>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor }}</td>
+            <td>{{ livro.issn }}</td>
+            <td>{{ livro.data_publicacao.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            <td>{{ livro.paginas }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="6">Nenhum livro cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
