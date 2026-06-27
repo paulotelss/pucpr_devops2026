@@ -1,41 +1,80 @@
-<h1>Lista de Livros</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Livros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>📖 Lista de Livros</h1>
 
-<form method="POST">
-    <label>Título: <input type="text" name="titulo" required></label><br>
-    <label>Autor: <input type="text" name="autor" required></label><br>
-    <label>ISSN: <input type="text" name="issn" required></label><br>
-    <label>Data de Publicação: <input type="date" name="data_publicacao" required></label><br>
-    <label>Páginas: <input type="number" name="paginas" required></label><br>
-    <button type="submit">Criar Livro</button>
-</form>
+        <form method="POST">
+            <label>Título
+                <input type="text" name="titulo" required>
+            </label>
+            <label>Autor
+                <input type="text" name="autor" required>
+            </label>
+            <label>ISSN (ou ISBN)
+                <input type="text" name="issn" required>
+            </label>
+            <label>Data de Publicação
+                <input type="date" name="data_publicacao" required>
+            </label>
+            <label>Páginas
+                <input type="number" name="paginas" required>
+            </label>
+            <button type="submit">Criar Livro</button>
+        </form>
 
-<hr>
+        <h2>Livros cadastrados</h2>
 
-<table border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Autor</th>
-            <th>ISSN</th>
-            <th>Publicado</th>
-            <th>Páginas</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for livro in livros %}
-        <tr>
-            <td>{{ livro.id }}</td>
-            <td>{{ livro.titulo }}</td>
-            <td>{{ livro.autor }}</td>
-            <td>{{ livro.issn }}</td>
-            <td>{{ livro.data_publicacao.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-            <td>{{ livro.paginas }}</td>
-        </tr>
+        {% if livros %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Capa</th>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>ISSN</th>
+                    <th>Publicado</th>
+                    <th>Páginas</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in livros %}
+                <tr>
+                    <td>{{ livro.id }}</td>
+                    <td>
+                        <img src="https://covers.openlibrary.org/b/isbn/{{ livro.issn }}-M.jpg"
+                             alt="Capa de {{ livro.titulo }}"
+                             class="book-cover"
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2250%22 height=%2275%22 viewBox=%220 0 50 75%22%3E%3Crect width=%2250%22 height=%2275%22 fill=%22%23f0f0f0%22/%3E%3Ctext x=%2225%22 y=%2237%22 text-anchor=%22middle%22 fill=%22%23999%22 font-family=%22sans-serif%22 font-size=%2210%22%3Eno cover%3C/text%3E%3C/svg%3E'">
+                    </td>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.autor }}</td>
+                    <td>{{ livro.issn }}</td>
+                    <td>{{ livro.data_publicacao.strftime('%Y-%m-%d %H:%M') }}</td>
+                    <td>{{ livro.paginas }}</td>
+                    <td>
+                        <form action="{{ url_for('deletar_livro', id=livro.id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir este livro?');">🗑️</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% else %}
-        <tr>
-            <td colspan="6">Nenhum livro cadastrado.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <p class="no-books">Nenhum livro cadastrado.</p>
+        {% endif %}
+
+        <br>
+        <a href="{{ url_for('index') }}">🏠 Voltar para página inicial</a>
+    </div>
+</body>
+</html>

@@ -1,3 +1,44 @@
-<h1>Integrantes</h1>
-<br>
-Paulo Giovani Teles Dias
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paulo Giovani - DevOps</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- font awesome de icones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container profile-container">
+        <!-- foto de perfil -->
+        <div class="profile-image">
+            <img src="{{ url_for('static', filename='foto_perfil.jpeg') }}" 
+                 alt="Foto de Paulo Giovani" 
+                 onerror="this.src='https://ui-avatars.com/api/?name=Paulo+Giovani&size=150&background=3b82f6&color=fff'">
+        </div>
+
+        <!-- nome e descrição -->
+        <h1 class="profile-name">👋 Paulo Giovani Teles Dias</h1>
+        <p class="profile-description">
+            Estudante de Cloud Computing | Entusiasta DevOps e Automação
+        </p>
+
+        <!-- links de sociais -->
+        <div class="social-links">
+            <a href="https://github.com/paulotelss" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/paulogiovanitelesdias6372a/" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+        </div>
+
+        <!-- link para a lista de livros -->
+        <div class="books-link">
+            <a href="{{ url_for('livros') }}" class="btn-books">
+                📚 Ver lista de livros
+            </a>
+        </div>
+    </div>
+</body>
+</html>
