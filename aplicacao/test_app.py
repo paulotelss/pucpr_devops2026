@@ -20,7 +20,8 @@ def test_index_conteudo(client):
     assert "Paulo Giovani Teles Dias" in client.get("/").text
 
 def test_index_titulo(client):
-    assert "<h1>Integrantes</h1>" in client.get("/").text
+    # Verifica se o link para livros está presente (nova versão)
+    assert "Ver lista de livros" in client.get("/").text
 
 def test_livros_get(client):
     assert client.get("/livros").status_code == 200
