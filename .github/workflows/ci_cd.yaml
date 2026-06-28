@@ -42,4 +42,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/meu-app:latest
+          tags: |
+            ${{ vars.DOCKER_USERNAME }}/meu-app:latest
+            ${{ vars.DOCKER_USERNAME }}/paulo-giovani-teles-dias:27-06-26
