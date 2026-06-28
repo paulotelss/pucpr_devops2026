@@ -96,6 +96,6 @@ O repositório possui um pipeline configurado em .github/workflows/ci_cd.yaml qu
 <img width="975" height="888" alt="Image" src="https://github.com/user-attachments/assets/898c8205-f59b-4bc6-adaf-a9ac088dd991" />
 
 
-## 🎥 Demonstração da aplicação
+## 🎥 Vídeo demonstração da aplicação abaixo YouTube
 
 [![Assista ao vídeo de demonstração](https://img.youtube.com/vi/tAEo436LuwY/0.jpg)](https://youtu.be/tAEo436LuwY)
