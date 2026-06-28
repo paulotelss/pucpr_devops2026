@@ -38,9 +38,11 @@ def livros():
     livros = Livro.query.all()
     return render_template('livros.html', livros=livros)
 
+# Cria as tabelas sempre que a aplicação for carregada
+with APP.app_context():
+    BD.create_all()
+
 if __name__ == '__main__':
-    with APP.app_context():
-        BD.create_all()
     APP.run(debug=True, host='0.0.0.0')
 
 
